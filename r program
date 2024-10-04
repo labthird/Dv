@@ -1,0 +1,35 @@
+#scatter
+library(ggplot2)
+Surveys <- data.frame(
+  record_id = c(1, 2, 3, 4, 5),
+  month = c(7, 7, 7, 7, 7),
+  day = c(16, 16, 16, 17, 17),
+  year = c(1977, 1977, 1977, 1977, 1977),
+  plot_id = c(2, 3, 2, 7, 3),
+  species_id = c("NL", "NL", "DM", "DM", "DM"),
+  sex = c("M", "M", "F", "M", "M"),
+  hindfoot_length = c(32, 33, 37, 36, 35),
+  weight = c(20, 22, 25, 23, 24) 
+)
+ggplot(data = Surveys, mapping = aes(x = hindfoot_length, y = weight)) +
+  geom_point(alpha = 0.8, color = "blue")
+
+# Histogram
+ggplot(data = Surveys, mapping = aes(x = weight)) +
+  geom_histogram(binwidth = 1, fill = "blue", color = "black", alpha = 0.7) +
+  labs(title = "Histogram of Weight", x = "Weight", y = "Count")
+
+# Bar plot
+ggplot(data = Surveys, mapping = aes(x = species_id)) +
+  geom_bar(fill = "blue", color = "black", alpha = 0.7) +
+  labs(title = "Bar Plot of Species", x = "Species ID", y = "Count")
+
+# Box plot
+ggplot(data = Surveys, mapping = aes(x = sex, y = hindfoot_length)) +
+  geom_boxplot(fill = "blue", color = "black", alpha = 0.7) +
+  labs(title = "Box Plot of Hindfoot Length by Sex", x = "Sex", y = "Hindfoot Length")
+
+# Line plot
+ggplot(data = Surveys, mapping = aes(x = record_id, y = hindfoot_length)) +
+  geom_line(color = "blue") +
+  labs(title = "Line Plot of Hindfoot Length over Record ID", x = "Record ID", y = "Hindfoot Length")
